@@ -1,19 +1,21 @@
 ﻿var express = require('express');
 var router = express.Router();
+var obj = require("../public/javascripts/JSON.json");
 
-/* GET home page. */
-router.get('/', function (req, res) {
+router.get('/search/:term', function (req, res) {
 
-    res.json([{
-        "id": "16296355",
-        "url": "r16296355_manchester",
-        "text": "Manchester"
-    },
-        {
-            "id": "16844357",
-            "url": "k16844357_manchester-city-centre",
-            "text": "Manchester City Centre"
-        }]);   
+    if (req.params.term.length < 3)
+        res.send("Sorry that was too short");
+
+    res.json(obj);   
+});
+
+router.get('/details/:id', function (req, res) {
+
+    if (req.params.id.length < 3)
+        res.send("Sorry that was too short");
+
+    res.json(obj[0]);
 });
 
 module.exports = router;
